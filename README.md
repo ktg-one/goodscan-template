@@ -4,12 +4,18 @@
 
 ---
 
-## What Is A Good Scan?
+## What Is A Good Scan Deep DIVE?
 
-A **Good Scan** is Good'Ai's flagship forensic audit deliverable for business owners and boards. 
+A **Good Scan Deep DIVE** is Good'Ai's flagship forensic audit deliverable for business owners, boards, and practitioners. 
 
-Instead of emailing messy attachments or a dry 40-page PDF that nobody reads, a Good Scan delivers a **bespoke, responsive executive web portal** with:
-- **Hero Diagnostic Score** with animated count-up counter (0–100 scale).
+Scored across the proprietary **D.I.V.E.™ Diagnostic Framework**:
+- **D — Defence**: Foundational risk exposure, regulatory compliance, data security, unencrypted forms, and statutory liability.
+- **I — Identity**: Public credibility, authority signals, brand coherence, and authentic practitioner narrative.
+- **V — Visibility**: Discoverability, Google Maps presence, local SEO, citation health, and search ranking.
+- **E — Experience**: The stakeholder journey, consultative friction, process consistency, and customer trust.
+
+Instead of emailing messy attachments or a dry 40-page PDF that nobody reads, a Deep DIVE delivers a **bespoke, responsive executive web portal** with:
+- **Composite D.I.V.E. Score** with animated count-up counter (0–100 scale).
 - **Interactive Risk Architecture Flowchart** (click-to-zoom SVG modal).
 - **15-Min Audio Overview** (native HTML5 player).
 - **Forensic Video Walkthrough** (native embedded video).
