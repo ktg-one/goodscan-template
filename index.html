@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Good Scan Forensic Report — Business One Stop Shop (BOSS)</title>
+<title>Good Scan — {{CLIENT}}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -144,7 +144,8 @@
   .reveal.in{opacity:1;transform:none}
 
   /* ---------- score cards ---------- */
-  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  @media(max-width:1100px){.cards{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:900px){.cards{grid-template-columns:1fr;max-width:460px;margin:0 auto}}
   .card{
     background:var(--white);border:1.5px solid var(--ink);border-radius:28px;
@@ -307,111 +308,37 @@
 <link rel="icon" type="image/png" href="assets/logo.png">
 <meta property="og:image" content="assets/logo.png">
 <style>
+  /* D.I.V.E. letter badges */
+  .dive-letter{
+    display:inline-grid;place-items:center;width:42px;height:42px;border-radius:50%;
+    background:var(--terra);color:var(--cream);
+    font-family:'Fraunces',serif;font-variation-settings:"SOFT" 100,"WONK" 1;font-weight:800;font-size:22px;
+    margin-right:10px;flex:none;
+  }
+  .card-top h3{display:flex;align-items:center;font-size:18px;line-height:1.15}
+  .card-top{flex-direction:column;align-items:flex-start;gap:10px}
+  .card-weight{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(47,58,51,.55);margin-top:2px}
+  .dive-legend{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;margin-top:18px;font-size:13px;font-weight:700;color:rgba(47,58,51,.75)}
+  .dive-legend b{color:var(--terra);font-family:'Fraunces',serif;font-size:16px;margin-right:4px}
 
-  /* Lightbox Modal for Mermaid Zoom */
-  .mermaid-modal-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: rgba(47, 58, 51, 0.78);
-    backdrop-filter: blur(10px);
-    display: none;
-    place-items: center;
-    padding: clamp(12px, 3vw, 32px);
-    opacity: 0;
-    transition: opacity 0.25s ease;
-  }
-  .mermaid-modal-overlay.open {
-    display: grid;
-    opacity: 1;
-  }
-  .mermaid-modal-content {
-    position: relative;
-    background: var(--cream);
-    border: 2px solid var(--ink);
-    border-radius: 28px;
-    box-shadow: 14px 14px 0 rgba(47, 58, 51, 0.35);
-    max-width: 96vw;
-    max-height: 92vh;
-    width: 1200px;
-    overflow-y: auto;
-    overflow-x: auto;
-    padding: clamp(24px, 4vw, 44px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .mermaid-modal-close {
-    position: absolute;
-    top: 18px;
-    right: 18px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--terra);
-    color: var(--cream);
-    border: 1.5px solid var(--ink);
-    cursor: pointer;
-    display: grid;
-    place-items: center;
-    font-size: 22px;
-    font-weight: 800;
-    transition: transform 0.2s, background 0.2s;
-    z-index: 10;
-  }
-  .mermaid-modal-close:hover {
-    transform: scale(1.1);
-    background: #963f33;
-  }
-  .mermaid-wrapper {
-    cursor: zoom-in;
-    position: relative;
-    transition: transform 0.25s, box-shadow 0.25s;
-  }
-  .mermaid-wrapper:hover {
-    transform: translateY(-4px);
-    box-shadow: 12px 12px 0 rgba(171, 75, 61, 0.2) !important;
-  }
-  .mermaid-zoom-hint {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11.5px;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--terra);
-    background: rgba(171, 75, 61, 0.08);
-    border: 1px solid rgba(171, 75, 61, 0.3);
-    border-radius: 999px;
-    padding: 6px 14px;
-    margin-top: 14px;
-    transition: background 0.2s;
-  }
-  .mermaid-wrapper:hover .mermaid-zoom-hint {
-    background: var(--terra);
-    color: var(--cream);
-  }
+  /* strengths */
+  .strengths{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:900px){.strengths{grid-template-columns:1fr;max-width:480px;margin:0 auto}}
+  .strength{background:var(--white);border:1.5px solid var(--ink);border-radius:28px;padding:28px 24px;box-shadow:6px 6px 0 rgba(47,58,51,.1)}
+  .strength .leaf{width:36px;height:36px;margin-bottom:12px}
+  .strength h3{font-size:20px;margin-bottom:8px}
+  .strength p{font-size:14px;line-height:1.65;color:rgba(47,58,51,.75)}
 </style>
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({
-    startOnLoad: true,
-    theme: 'base',
-    themeVariables: {
-      primaryColor: '#d8dfca',
-      primaryTextColor: '#2f3a33',
-      primaryBorderColor: '#2f3a33',
-      lineColor: '#ab4b3d',
-      secondaryColor: '#f6f3ea',
-      tertiaryColor: '#fffdf8',
-      fontFamily: 'Manrope, sans-serif',
-      fontSize: '13px'
-    }
-  });
-</script>
 </head>
 <body>
+<!-- ================================================================
+     GOOD SCAN TEMPLATE — replace every {{PLACEHOLDER}} before publishing.
+     Scores come ONLY from the client's DIVE v10 report (Section 1 + 3).
+     D = Data & Defence · I = Identity & IP · V = Visibility & Vulnerability · E = Experience & Expertise
+     Voice: warm, plain English, strengths first. No "forensic",
+     "violation", "critical", "failed", "urgent".
+     ================================================================ -->
+
 <!-- leaf shadows -->
 <svg class="leaf-shadow" style="top:-40px;left:-60px;width:340px" viewBox="0 0 100 100"><path fill="#2f3a33" opacity=".5" d="M50 2 C78 22 88 55 74 84 C60 96 40 96 26 84 C12 55 22 22 50 2 Z M50 10 L50 88" stroke="#f6f3ea" stroke-width="1.5"/></svg>
 <svg class="leaf-shadow" style="top:36%;right:-90px;width:300px;transform:rotate(140deg)" viewBox="0 0 100 100"><path fill="#ab4b3d" opacity=".28" d="M50 2 C78 22 88 55 74 84 C60 96 40 96 26 84 C12 55 22 22 50 2 Z"/></svg>
@@ -423,10 +350,10 @@
   <a href="https://goodai.au" target="_blank" class="brand-wordmark" aria-label="Good'Ai">Good<span class="brand-apostrophe">'</span>Ai</a>
   <div class="nav-meta">
     <div class="nav-site">
-      <span class="site">boss.asn.au</span>
-      <span class="when">Scanned 26 Sep 2026 &middot; Digital Forensics Audit</span>
+      <span class="site">{{DOMAIN}}</span>
+      <span class="when">Scanned {{SCAN_DATE}} &middot; Good Scan Deep DIVE</span>
     </div>
-    <span class="nav-score">Score <b>56</b></span>
+    <span class="nav-score">Score <b>{{SCORE}}</b></span>
   </div>
 </nav>
 
@@ -448,18 +375,18 @@
 
     <div class="hero-inner">
       <span class="eyebrow"><span class="dot"></span> Your Good Scan is ready</span>
-      <p class="score-line">Digital Health Score</p>
-      <div class="big-score display"><span id="count">0</span><span class="bang">!</span></div>
-      <p class="score-verdict">Architectural fragility, <em>critical compliance debt.</em></p>
-      <p class="hero-sub">A forensic audit of Business One Stop Shop (BOSS) reveals high community engagement masking urgent statutory risks: deceptive Google Maps pin manipulation, unvetted directory link spam, and unencrypted Centrelink/bank hardship uploads.</p>
+      <p class="score-line">{{CLIENT}} &middot; DIVE Score</p>
+      <div class="big-score display"><span id="count" data-score="{{SCORE}}">0</span><span class="bang">!</span></div>
+      <p class="score-verdict">{{VERDICT}} <em>{{VERDICT_EM}}</em></p>
+      <p class="hero-sub">{{HERO_SUB}}</p>
       <div style="margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
         <a href="assets/dossier.zip" download class="btn btn-solid" style="padding:10px 22px;font-size:13px">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" style="width:15px;height:15px"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg>
-          Download All Artifacts (ZIP)
+          Download everything (ZIP)
         </a>
-        <a href="https://notebook.google.com/notebook/a0ec3096-65ee-44c0-824d-a65ae4be40b3/preview" target="_blank" class="btn btn-ghost" style="padding:10px 22px;font-size:13px">
+        <a href="{{NOTEBOOK_URL}}" target="_blank" class="btn btn-ghost" style="padding:10px 22px;font-size:13px">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="width:15px;height:15px"><path d="M12 2v4m0 0a4 4 0 014 4v4a4 4 0 01-4 4 4 4 0 01-4-4v-4a4 4 0 014-4z"/><circle cx="9" cy="11" r="1" fill="currentColor"/><circle cx="15" cy="11" r="1" fill="currentColor"/><path d="M8 18l-3 3m11-3l3 3"/></svg>
-          Personal Knowledge Bots
+          Ask your report questions
         </a>
       </div>
     </div>
@@ -493,8 +420,8 @@
       <svg class="icon-pause" viewBox="0 0 24 24"><path d="M7 4h3.5v16H7zM13.5 4H17v16h-3.5z"/></svg>
     </button>
     <div class="audio-body">
-      <div class="audio-title">Listen: The Digital Duct Tape Holding BOSS Together</div>
-      <div class="audio-sub">15 min forensic breakdown &middot; audio overview &amp; deep dive</div>
+      <div class="audio-title">Listen: how your {{SCORE}} was scored</div>
+      <div class="audio-sub">Audio overview &middot; put the kettle on, it's mostly good news</div>
       <div class="audio-track" id="track"><div class="audio-fill" id="fill"></div></div>
       <div class="audio-time"><span id="cur">0:00</span><span id="dur">0:00</span></div>
     </div>
@@ -504,187 +431,165 @@
 
 <svg class="wave" viewBox="0 0 1440 64" preserveAspectRatio="none"><path d="M0,40 C240,72 480,8 720,40 C960,72 1200,8 1440,40 L1440,64 L0,64 Z" fill="#d8dfca"/></svg>
 
-<!-- ============ SCORE WIDGETS ============ -->
+<!-- ============ D.I.V.E. SCORE CARDS ============ -->
 <section id="breakdown" style="background:var(--cream)">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="pill">The breakdown</span>
-      <h2>Where the <em>56</em> comes from</h2>
-      <p>We scored five core pillars across compliance, search, architecture, and security. Front-end trust is solid, but back-end regulatory debt requires immediate intervention.</p>
+      <span class="pill">The D.I.V.E. breakdown</span>
+      <h2>Where the <em>{{SCORE}}</em> comes from</h2>
+      <p>{{BREAKDOWN_INTRO}}</p>
+      <div class="dive-legend" style="justify-content:flex-start">
+        <span><b>D</b>Data &amp; Defence</span><span><b>I</b>Identity &amp; IP</span><span><b>V</b>Visibility &amp; Vulnerability</span><span><b>E</b>Experience &amp; Expertise</span>
+      </div>
     </div>
 
     <div class="cards">
-      <!-- Card 1: donut -->
+      <!-- D — Defence -->
       <div class="card reveal">
-        <div class="card-top"><h3>Content &amp; Delivery</h3><span class="card-tag">76 &middot; Accessible</span></div>
+        <div class="card-top"><h3><span class="dive-letter">D</span>Data &amp; Defence</h3><span class="card-tag">{{D_STATUS}}</span></div>
+        <div class="card-weight">Weighted {{D_WEIGHT}}%</div>
         <div class="chart-box">
           <svg class="donut" width="150" height="150" viewBox="0 0 120 120">
             <circle class="track" cx="60" cy="60" r="52"/>
-            <circle class="val" data-val="76" cx="60" cy="60" r="52"/>
+            <circle class="val" data-val="{{D_SCORE}}" cx="60" cy="60" r="52"/>
           </svg>
-          <div class="chart-num" data-count="76">0</div>
+          <div class="chart-num" data-count="{{D_SCORE}}">0</div>
         </div>
-        <p class="card-note">High community engagement, accessible pricing ($110 websites), and empathetic tone. However, training session recordings are distributed via static pages with generic shared passwords.</p>
+        <p class="card-note">{{D_NOTE}}</p>
       </div>
 
-      <!-- Card 2: bars -->
+      <!-- I — Identity -->
       <div class="card reveal">
-        <div class="card-top"><h3>Search &amp; Tech Setup</h3><span class="card-tag hot">53 &middot; High Risk</span></div>
-        <div class="chart-box" style="display:block">
-          <div class="bars">
-            <div class="bar" data-h="76"></div>
-            <div class="bar" data-h="62"></div>
-            <div class="bar on" data-h="53"></div>
-            <div class="bar" data-h="49"></div>
-            <div class="bar on" data-h="41"></div>
-          </div>
-          <div class="bars-labels"><span>Content</span><span>CX</span><span>Search</span><span>Arch</span><span>Sec</span></div>
-        </div>
-        <p class="card-note">Published "Biz Tips" advocate deceptive Google Maps pin manipulation. Free Member Directory passes direct follow backlinks without vetting, creating severe link spam and profile suspension risks.</p>
-      </div>
-
-      <!-- Card 3: gauge -->
-      <div class="card reveal">
-        <div class="card-top"><h3>Data &amp; Security</h3><span class="card-tag hot" style="background:#ab4b3d;color:#f6f3ea">41 &middot; Critical</span></div>
+        <div class="card-top"><h3><span class="dive-letter">I</span>Identity &amp; IP</h3><span class="card-tag">{{I_STATUS}}</span></div>
+        <div class="card-weight">Weighted {{I_WEIGHT}}%</div>
         <div class="chart-box">
-          <svg class="gauge" viewBox="0 0 190 100">
-            <path class="g-track" d="M15 95 A80 80 0 0 1 175 95"/>
-            <path class="g-val" data-val="41" d="M15 95 A80 80 0 0 1 175 95"/>
+          <svg class="donut" width="150" height="150" viewBox="0 0 120 120">
+            <circle class="track" cx="60" cy="60" r="52"/>
+            <circle class="val" data-val="{{I_SCORE}}" cx="60" cy="60" r="52"/>
           </svg>
-          <div class="chart-num" data-count="41">0</div>
+          <div class="chart-num" data-count="{{I_SCORE}}">0</div>
         </div>
-        <p class="card-note">Hardship waiver applicants upload unredacted Centrelink and bank statements stored in unencrypted, public Squarespace CDN media buckets. Violates Australian Privacy Principles (APPs 6 &amp; 11).</p>
+        <p class="card-note">{{I_NOTE}}</p>
+      </div>
+
+      <!-- V — Visibility -->
+      <div class="card reveal">
+        <div class="card-top"><h3><span class="dive-letter">V</span>Visibility &amp; Vulnerability</h3><span class="card-tag">{{V_STATUS}}</span></div>
+        <div class="card-weight">Weighted {{V_WEIGHT}}%</div>
+        <div class="chart-box">
+          <svg class="donut" width="150" height="150" viewBox="0 0 120 120">
+            <circle class="track" cx="60" cy="60" r="52"/>
+            <circle class="val" data-val="{{V_SCORE}}" cx="60" cy="60" r="52"/>
+          </svg>
+          <div class="chart-num" data-count="{{V_SCORE}}">0</div>
+        </div>
+        <p class="card-note">{{V_NOTE}}</p>
+      </div>
+
+      <!-- E — Experience -->
+      <div class="card reveal">
+        <div class="card-top"><h3><span class="dive-letter">E</span>Experience &amp; Expertise</h3><span class="card-tag">{{E_STATUS}}</span></div>
+        <div class="card-weight">Weighted {{E_WEIGHT}}%</div>
+        <div class="chart-box">
+          <svg class="donut" width="150" height="150" viewBox="0 0 120 120">
+            <circle class="track" cx="60" cy="60" r="52"/>
+            <circle class="val" data-val="{{E_SCORE}}" cx="60" cy="60" r="52"/>
+          </svg>
+          <div class="chart-num" data-count="{{E_SCORE}}">0</div>
+        </div>
+        <p class="card-note">{{E_NOTE}}</p>
       </div>
     </div>
 
     <div class="score-explain reveal">
       <div>
-        <h3>What a 56 actually means</h3>
-        <p>Scores land on a diagnostic scale: <strong>0–40</strong> critical failure, <strong>40–60</strong> constrained operational with compliance debt — that is BOSS at <strong>56.2 (31st percentile)</strong> — and <strong>80+</strong> enterprise grade. BOSS does not need more marketing; it requires urgent legal and technical cleanup to protect its Commonwealth funding and community trust.</p>
+        <h3>What a {{SCORE}} actually means</h3>
+        <p>Scores land on a simple scale: <strong>0–40</strong> hard to find or trust online, <strong>40–60</strong> finding your feet, <strong>60–80</strong> good bones with a few gaps, and <strong>80+</strong> thriving. {{BAND_TEXT}}</p>
+        <p style="margin-top:12px;font-size:13.5px">{{CALIBRATION}}</p>
       </div>
       <div class="formula">
-        <div class="formula-row"><span>Content Management</span><span>76 &times; 20% = 15.2</span></div>
-        <div class="formula-row"><span>Customer Experience (CX)</span><span>62 &times; 20% = 12.4</span></div>
-        <div class="formula-row"><span>Technical &amp; Search Governance</span><span>53 &times; 20% = 10.6</span></div>
-        <div class="formula-row"><span>Digital Systems Architecture</span><span>49 &times; 20% = 9.8</span></div>
-        <div class="formula-row"><span>Data Foundations &amp; Security</span><span>41 &times; 20% = 8.2</span></div>
-        <div class="formula-row"><span>Digital Health Score</span><span>56.2 / 100</span></div>
+        <div class="formula-row"><span>D &middot; Data &amp; Defence</span><span>{{D_SCORE}} &times; {{D_WEIGHT}}%</span></div>
+        <div class="formula-row"><span>I &middot; Identity &amp; IP</span><span>{{I_SCORE}} &times; {{I_WEIGHT}}%</span></div>
+        <div class="formula-row"><span>V &middot; Visibility &amp; Vulnerability</span><span>{{V_SCORE}} &times; {{V_WEIGHT}}%</span></div>
+        <div class="formula-row"><span>E &middot; Experience &amp; Expertise</span><span>{{E_SCORE}} &times; {{E_WEIGHT}}%</span></div>
+        <div class="formula-row"><span>Your DIVE Score</span><span>{{SCORE}}</span></div>
       </div>
     </div>
   </div>
 </section>
 
-
-<!-- ============ FORENSIC ARCHITECTURE MERMAID FLOW ============ -->
 <svg class="wave" viewBox="0 0 1440 64" preserveAspectRatio="none"><path d="M0,24 C240,-8 480,56 720,24 C960,-8 1200,56 1440,24 L1440,64 L0,64 Z" fill="#d8dfca"/></svg>
 
-<section id="architecture" style="background:var(--sage)">
-  <div class="wrap">
-    <div class="section-head reveal" style="text-align:center;margin:0 auto 36px">
-      <span class="pill outline">Architecture &amp; Data Flow</span>
-      <h2>Forensic <em>Risk &amp; Systems Map</em></h2>
-      <p>Interactive architectural map of user journeys, unencrypted data ingestion leaks, and regulatory compliance exposures.</p>
-    </div>
-
-    <div class="card reveal mermaid-wrapper" id="mermaidCard" title="Click to zoom in fullscreen" style="background:var(--white);padding:clamp(20px,4vw,36px);border-radius:28px;border:1.5px solid var(--ink);box-shadow:8px 8px 0 rgba(47,58,51,.12);overflow-x:auto;">
-      <pre class="mermaid" style="background:transparent;display:flex;justify-content:center;margin:0 auto;">
-flowchart TD
-    classDef client fill:#d8dfca,stroke:#2f3a33,stroke-width:1.5px,color:#2f3a33,font-weight:bold;
-    classDef danger fill:#ab4b3d,stroke:#2f3a33,stroke-width:1.5px,color:#f6f3ea,font-weight:bold;
-    classDef remedy fill:#b9c8a8,stroke:#2f3a33,stroke-width:1.5px,color:#2f3a33,font-weight:bold;
-
-    subgraph INTAKE["1. User Journey & Inbound"]
-        A["WA Micro-Enterprise Client"]:::client -->|"Visits Website"| B["boss.asn.au"]:::client
-        B -->|"Consultation Click"| C["Acuity Scheduling<br/>(Off-domain Redirect & Broken Analytics)"]
-    end
-
-    subgraph EXPOSURE["2. Critical Forensic Vulnerabilities"]
-        B -->|"Hardship Waiver Request"| D["Public Web Upload Form"]
-        D -->|"Unredacted Ingestion"| E["Squarespace CDN Media Bucket<br/>⚠️ APP 6 & 11 Privacy Act Violation"]:::danger
-        B -->|"Biz Tips Advice"| F["Google Maps Pin Manipulation<br/>⚠️ Manual Penalty & Profile Suspension"]:::danger
-        B -->|"Free Member Directory"| G["Direct Follow Backlinks<br/>⚠️ Google Link Spam Penalty"]:::danger
-        B -->|"ASBAS Digital Solutions"| H["Exclusive Squarespace Funnel<br/>⚠️ $150/hr Private Upsell (Grant Conflict)"]:::danger
-    end
-
-    subgraph ROADMAP["3. Remediation Architecture"]
-        I["Phase 1: Compliance Purge & Link Nofollow"]:::remedy
-        J["Phase 2: Platform Neutrality & Event Schema"]:::remedy
-        K["Phase 3: Outseta AMS + Gated LMS"]:::remedy
-    end
-
-    E -.->|"Immediate Purge"| I
-    F & G -.->|"Sanitize"| I
-    H -.->|"Decouple"| J
-      </pre>
-      <div style="text-align:center;">
-        <span class="mermaid-zoom-hint">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="width:13px;height:13px"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-          Click to zoom &amp; expand map
-        </span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Fullscreen Mermaid Lightbox Modal -->
-<div class="mermaid-modal-overlay" id="mermaidModal" role="dialog" aria-modal="true" aria-label="Fullscreen Architecture Flow">
-  <div class="mermaid-modal-content">
-    <button class="mermaid-modal-close" id="mermaidModalClose" aria-label="Close modal">&times;</button>
-    <div style="text-align:center;margin-bottom:16px;">
-      <span class="pill outline" style="margin-bottom:6px">Interactive Architecture Map</span>
-      <h3 style="font-size:clamp(20px,2.6vw,30px)">Forensic <em>Risk &amp; Systems Flow</em></h3>
-      <p style="font-size:12px;color:rgba(47,58,51,0.6);margin-top:2px">Press ESC or click anywhere outside to close</p>
-    </div>
-    <div id="mermaidModalContainer" style="width:100%;display:flex;justify-content:center;overflow:auto;padding:10px 0;"></div>
-  </div>
-</div>
-
+<!-- ============ WHAT YOU'RE DOING RIGHT ============ -->
 <section style="background:var(--sage)">
   <div class="wrap">
     <div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="pill outline">Keep doing this</span>
+      <h2>What you're <em>doing right</em></h2>
+      <p>Before anything else — these are real strengths we found evidence for. Protect them.</p>
+    </div>
+    <div class="strengths">
+      <div class="strength reveal">
+        <svg class="leaf" viewBox="0 0 100 100"><path fill="#ab4b3d" d="M50 2 C78 22 88 55 74 84 C60 96 40 96 26 84 C12 55 22 22 50 2 Z"/></svg>
+        <h3>{{S1_TITLE}}</h3>
+        <p>{{S1_TEXT}}</p>
+      </div>
+      <div class="strength reveal">
+        <svg class="leaf" viewBox="0 0 100 100"><path fill="#b9c8a8" stroke="#2f3a33" stroke-width="3" d="M50 2 C78 22 88 55 74 84 C60 96 40 96 26 84 C12 55 22 22 50 2 Z"/></svg>
+        <h3>{{S2_TITLE}}</h3>
+        <p>{{S2_TEXT}}</p>
+      </div>
+      <div class="strength reveal">
+        <svg class="leaf" viewBox="0 0 100 100"><path fill="#2f3a33" d="M50 2 C78 22 88 55 74 84 C60 96 40 96 26 84 C12 55 22 22 50 2 Z"/></svg>
+        <h3>{{S3_TITLE}}</h3>
+        <p>{{S3_TEXT}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROADMAP ============ -->
+<section style="background:var(--sage);padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
       <span class="pill terra">Your cheat sheet</span>
-      <h2>The 56 &rarr; 85 <em>Remediation Roadmap</em></h2>
-      <p>Screenshot this. Three stops, in order — each one lifts the score on the left of the arrow.</p>
+      <h2>The {{SCORE}} &rarr; {{TARGET}} <em>roadmap</em></h2>
+      <p>Screenshot this. Three stops, in order — no rush, no jargon.</p>
     </div>
 
     <div class="infographic reveal">
       <div style="text-align:center">
-        <span class="pill outline">Score 56 Today</span>
+        <span class="pill outline">Score {{SCORE}} today</span>
         <span style="margin:0 10px;color:var(--terra);font-weight:800">&rarr;</span>
-        <span class="pill terra">Score 85+ Enterprise Ready</span>
+        <span class="pill terra">{{TARGET}}+ within reach</span>
       </div>
       <div class="roadmap">
         <div class="stop">
           <div class="stop-dot">1</div>
-          <h4>Phase 1: Compliance &amp; Data Purge</h4>
-          <p>Delete unredacted Centrelink/bank screenshots from public CDNs. Remove deceptive Google Maps advice and add rel="nofollow" to directory links.</p>
-          <span class="mini-pill">+12 pts &middot; Days 1–30</span>
+          <h4>This week</h4>
+          <p>{{WEEK_TEXT}}</p>
+          <span class="mini-pill">{{WEEK_TIME}}</span>
         </div>
         <div class="stop">
           <div class="stop-dot">2</div>
-          <h4>Phase 2: Vendor Neutrality &amp; Search</h4>
-          <p>Decouple private $150/hr coaching from public grants. Introduce vendor-neutral training (WordPress/Shopify) and inject JSON-LD event schema.</p>
-          <span class="mini-pill">+10 pts &middot; Days 31–90</span>
+          <h4>This month</h4>
+          <p>{{MONTH_TEXT}}</p>
+          <span class="mini-pill">{{MONTH_TIME}}</span>
         </div>
         <div class="stop">
           <div class="stop-dot">3</div>
-          <h4>Phase 3: Scalable AMS &amp; LMS</h4>
-          <p>Migrate directory to authenticated membership system (Outseta/MemberSpace), launch gated LMS with student tracking, and enforce SPF/DKIM/DMARC.</p>
-          <span class="mini-pill">+7 pts &middot; Days 91–180</span>
+          <h4>When you're ready</h4>
+          <p>{{READY_TEXT}}</p>
+          <span class="mini-pill">{{READY_TIME}}</span>
         </div>
       </div>
-      
+
       <div style="margin-top:36px;text-align:center">
-        <span class="pill outline" style="margin-bottom:14px">Executive Infographic</span>
-        <a href="assets/info.png" target="_blank" title="Click to view full high-res roadmap">
-          <img src="assets/info.png" alt="BOSS Strategic Remediation Roadmap" style="max-width:100%;border-radius:20px;border:1.5px solid var(--ink);box-shadow:8px 8px 0 rgba(47,58,51,.15);cursor:zoom-in;">
+        <span class="pill outline" style="margin-bottom:14px">Your one-page summary</span>
+        <a href="assets/info.png" target="_blank" title="Open full-size summary">
+          <img src="assets/info.png" alt="{{CLIENT}} Good Scan summary and roadmap" style="max-width:100%;border-radius:20px;border:1.5px solid var(--ink);box-shadow:8px 8px 0 rgba(47,58,51,.15);cursor:zoom-in;">
         </a>
-        <p style="margin-top:10px;font-size:12px;font-weight:700;color:rgba(47,58,51,.6)">Click infographic to open full-resolution high-res version</p>
-      </div>
-      <div class="legend">
-        <span><i style="background:var(--sage-deep)"></i> Quick win — under an hour</span>
-        <span><i style="background:var(--cream);border:1.5px solid var(--ink)"></i> Weekend project</span>
-        <span><i style="background:var(--terra)"></i> Ongoing habit</span>
+        <p style="margin-top:10px;font-size:12px;font-weight:700;color:rgba(47,58,51,.6)">Tap the picture to open it full size</p>
       </div>
     </div>
   </div>
@@ -697,32 +602,32 @@ flowchart TD
   <div class="wrap">
     <div class="section-head reveal">
       <span class="pill">High impact, low pressure</span>
-      <h2>Three Immediate <em>Remediation</em> Actions</h2>
-      <p>You don't need to do everything. Honestly, just these three would change the trajectory.</p>
+      <h2>Three <em>easy wins</em> to start</h2>
+      <p>You don't need to do everything. Honestly, just these three would make a real difference.</p>
     </div>
 
     <div class="actions">
       <div class="action reveal">
         <div class="num">01</div>
-        <h3>Purge Hardship Upload Leaks</h3>
-        <p>Permanently remove the unencrypted file upload form for fee waivers and purge historical Centrelink/bank screenshots from public Squarespace media buckets. Eliminates statutory OAIC breach notification liability under the Privacy Act 1988.</p>
-        <span class="eta">Immediate &middot; ~45 min</span>
+        <h3>{{A1_TITLE}}</h3>
+        <p>{{A1_TEXT}}</p>
+        <span class="eta">{{A1_ETA}}</span>
       </div>
       <div class="action reveal">
         <div class="num">02</div>
-        <h3>Sanitize Outbound Link Spam</h3>
-        <p>Update the Member Directory templates to apply <code>rel="nofollow ugc"</code> to all external outbound links. Stops algorithmic search penalties under Google Search Essentials for unvetted commercial backlink schemes.</p>
-        <span class="eta">Day 1 &middot; ~30 min</span>
+        <h3>{{A2_TITLE}}</h3>
+        <p>{{A2_TEXT}}</p>
+        <span class="eta">{{A2_ETA}}</span>
       </div>
       <div class="action reveal">
         <div class="num">03</div>
-        <h3>Scrub Deceptive Map Pin Advice</h3>
-        <p>Delete the "Biz Tips" article instructing local business owners to place fake Google Maps pins in parks or cafes. Prevents catastrophic Google Business Profile suspensions across your micro-enterprise membership.</p>
-        <span class="eta">Immediate &middot; ~15 min</span>
+        <h3>{{A3_TITLE}}</h3>
+        <p>{{A3_TEXT}}</p>
+        <span class="eta">{{A3_ETA}}</span>
       </div>
     </div>
 
-    <p class="gentle-note reveal">Three surgical steps to remove regulatory liability and restore search integrity.</p>
+    <p class="gentle-note reveal">{{GENTLE_NOTE}}</p>
   </div>
 </section>
 
@@ -733,8 +638,8 @@ flowchart TD
   <div class="wrap">
     <div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
       <span class="pill terra">Watch next</span>
-      <h2>Forensic Audit: <em>BOSS Walkthrough</em></h2>
-      <p>A forensic video walkthrough of the digital health audit, regulatory compliance exposures, and strategic roadmap for Business One Stop Shop.</p>
+      <h2>Your Good Scan, <em>walked through</em></h2>
+      <p>A short video that talks through your scores, what's working, and the easy wins — at your own pace.</p>
     </div>
 
     <div class="video-shell reveal">
@@ -742,8 +647,8 @@ flowchart TD
         <div class="video-poster" id="videoPoster" data-src="assets/video.mp4">
           <div>
             <div class="v-play"><svg viewBox="0 0 24 24"><path d="M6 3.8v16.4c0 .9 1 1.5 1.8 1L20 13c.8-.5.8-1.6 0-2L7.8 2.9C7 2.4 6 3 6 3.8z"/></svg></div>
-            <h3>Play Forensic Video Walkthrough</h3>
-            <p>Complete video walkthrough &middot; click to play</p>
+            <h3>Play your walkthrough</h3>
+            <p>Video overview &middot; tap to play</p>
           </div>
         </div>
       </div>
@@ -756,38 +661,39 @@ flowchart TD
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="footer-inner reveal">
-    <h2>Complete Executive <em>Audit Dossier</em></h2>
-    <p>Full briefing report, audio overview, forensic video walkthrough, comparative intelligence matrix, and strategic mindmap bundled for executive board review. Plus your interactive Personal Knowledge Bots workspace.</p>
+    <h2>Everything in <em>one place</em></h2>
+    <p>Your full report, audio, video walkthrough, slide deck, action plan and mind map — plus a notebook you can ask questions about your own results.</p>
     <div class="btn-row">
-      <a class="btn btn-solid" href="assets/dossier.zip" download aria-label="Download All Reports and Media (ZIP)">
+      <a class="btn btn-solid" href="assets/dossier.zip" download aria-label="Download everything (ZIP)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg>
-        Download All Artifacts (ZIP)
+        Download everything (ZIP)
       </a>
-      <a class="btn btn-solid" style="background:var(--ink);border-color:var(--ink)" href="https://notebook.google.com/notebook/a0ec3096-65ee-44c0-824d-a65ae4be40b3/preview" target="_blank" aria-label="Personal Knowledge Bots">
+      <a class="btn btn-solid" style="background:var(--ink);border-color:var(--ink)" href="{{NOTEBOOK_URL}}" target="_blank" aria-label="Ask your report questions">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4m0 0a4 4 0 014 4v4a4 4 0 01-4 4 4 4 0 01-4-4v-4a4 4 0 014-4z"/><circle cx="9" cy="11" r="1" fill="currentColor"/><circle cx="15" cy="11" r="1" fill="currentColor"/><path d="M8 18l-3 3m11-3l3 3"/></svg>
-        Personal Knowledge Bots
+        Ask your report questions
       </a>
-      <a class="btn btn-ghost" href="assets/deck.pdf" target="_blank" download aria-label="Download Full Audit PDF">
+      <a class="btn btn-ghost" href="assets/deck.pdf" target="_blank" download aria-label="Download slide deck (PDF)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        Audit Deck (PDF)
+        Slide deck (PDF)
       </a>
-      <a class="btn btn-ghost" href="assets/data_table.csv" target="_blank" download aria-label="Download WA Advisory Comparison Data">
-        Comparison Matrix (CSV)
+      <a class="btn btn-ghost" href="assets/data_table.csv" target="_blank" download aria-label="Download action plan (CSV)">
+        Action plan (CSV)
       </a>
-      <a class="btn btn-ghost" href="assets/mindmap.json" target="_blank" download aria-label="Download Forensic Mindmap">
-        Mindmap (JSON)
+      <a class="btn btn-ghost" href="assets/mindmap.json" target="_blank" download aria-label="Download mind map (JSON)">
+        Mind map (JSON)
       </a>
     </div>
-    <div class="footer-logo"><a href="https://goodai.au" target="_blank" aria-label="Good AI Australia"><img src="assets/logo.png" alt="Good AI Australia"></a></div>
-    <p class="fine">Good Scan Forensic Briefing &middot; Business One Stop Shop (BOSS) &middot; Scanned 26 Sep 2026</p>
+    <div class="footer-logo"><a href="https://goodai.au" target="_blank" aria-label="Good'Ai Australia"><img src="assets/logo.png" alt="Good'Ai Australia"></a></div>
+    <p class="fine">Good Scan Deep DIVE &middot; {{CLIENT}} &middot; Scanned {{SCAN_DATE}}</p>
   </div>
 </footer>
 
 <script>
 (function(){
-  /* ---- count-up hero score ---- */
+  /* ---- count-up hero score (reads data-score) ---- */
   var countEl = document.getElementById('count');
   function countUp(el, target, dur){
+    if(!isFinite(target)) return;
     var t0 = null;
     function step(ts){
       if(!t0) t0 = ts;
@@ -798,26 +704,18 @@ flowchart TD
     }
     requestAnimationFrame(step);
   }
-  countUp(countEl, 56, 1800);
+  countUp(countEl, +countEl.dataset.score, 1800);
 
-  /* ---- reveal + animate charts on scroll ---- */
-  var C = 326.7, G = 298.3; // circumferences
+  /* ---- reveal + animate donuts on scroll ---- */
+  var C = 326.7; // donut circumference
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(!e.isIntersecting) return;
       var el = e.target;
       el.classList.add('in');
-
       el.querySelectorAll('.donut .val').forEach(function(c){
         var v = +c.dataset.val;
-        c.style.strokeDashoffset = C * (1 - v / 100);
-      });
-      el.querySelectorAll('.gauge .g-val').forEach(function(c){
-        var v = +c.dataset.val;
-        c.style.strokeDashoffset = G * (1 - v / 100);
-      });
-      el.querySelectorAll('.bars .bar').forEach(function(b, i){
-        setTimeout(function(){ b.style.height = b.dataset.h + '%'; }, i * 120);
+        if(isFinite(v)) c.style.strokeDashoffset = C * (1 - v / 100);
       });
       el.querySelectorAll('[data-count]').forEach(function(n){
         countUp(n, +n.dataset.count, 1600);
@@ -855,7 +753,7 @@ flowchart TD
     audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
   });
 
-  /* ---- click-to-load video embed (supports mp4 and iframe) ---- */
+  /* ---- click-to-load video (mp4 or iframe) ---- */
   var poster = document.getElementById('videoPoster');
   poster.addEventListener('click', function(){
     var src = poster.dataset.src;
@@ -864,11 +762,7 @@ flowchart TD
       v.src = src;
       v.controls = true;
       v.autoplay = true;
-      v.style.position = 'absolute';
-      v.style.inset = '0';
-      v.style.width = '100%';
-      v.style.height = '100%';
-      v.style.borderRadius = '24px';
+      v.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border-radius:24px';
       poster.parentNode.appendChild(v);
     } else {
       var f = document.createElement('iframe');
@@ -879,44 +773,6 @@ flowchart TD
     }
     poster.classList.add('hide');
   });
-/* ---- click-to-zoom mermaid modal ---- */
-  var mermaidCard = document.getElementById('mermaidCard');
-  var mermaidModal = document.getElementById('mermaidModal');
-  var mermaidModalClose = document.getElementById('mermaidModalClose');
-  var mermaidModalContainer = document.getElementById('mermaidModalContainer');
-
-  if(mermaidCard && mermaidModal){
-    mermaidCard.addEventListener('click', function(){
-      var svg = mermaidCard.querySelector('svg');
-      if(svg){
-        mermaidModalContainer.innerHTML = '';
-        var clone = svg.cloneNode(true);
-        clone.style.width = '100%';
-        clone.style.height = 'auto';
-        clone.style.minWidth = '780px';
-        clone.style.maxWidth = '1120px';
-        clone.removeAttribute('id');
-        mermaidModalContainer.appendChild(clone);
-        mermaidModal.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      }
-    });
-
-    function closeMermaidModal(){
-      mermaidModal.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    mermaidModalClose.addEventListener('click', closeMermaidModal);
-    mermaidModal.addEventListener('click', function(e){
-      if(e.target === mermaidModal) closeMermaidModal();
-    });
-    document.addEventListener('keydown', function(e){
-      if(e.key === 'Escape' && mermaidModal.classList.contains('open')){
-        closeMermaidModal();
-      }
-    });
-  }
 })();
 </script>
 </body>
