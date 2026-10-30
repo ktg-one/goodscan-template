@@ -92,4 +92,5 @@ python .agents/skills/goodscan-pipeline/scripts/pipeline.py \
 
 - **Skill Authority**: [`.agents/skills/goodscan-pipeline/SKILL.md`](../.agents/skills/goodscan-pipeline/SKILL.md)
 - **Engine Script**: [`.agents/skills/goodscan-pipeline/scripts/pipeline.py`](../.agents/skills/goodscan-pipeline/scripts/pipeline.py)
+- **NotebookLM Studio Prompts**: [`PROMPTS.md`](./PROMPTS.md)
 - **Template Repo**: [https://github.com/ktg-one/goodscan-template](https://github.com/ktg-one/goodscan-template)
